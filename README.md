@@ -22,7 +22,7 @@ npm i --save react-native-bluesnap-encrypter
 ```jsx
 import React, { Component } from "react";
 import { View, Button } from "react-native";
-import BlueSnapEncrypter from "react-native-bluesnap-encrypter"
+import BlueSnapEncrypter from "react-native-bluesnap-encrypter";
 
 class MyComponent extends Component {
     constructor(props, context) {
@@ -83,7 +83,7 @@ const encrypted = await this.encrypter.encrypt({
     cvvNumber: "123"
 });
 ```
-Returns a Promise which resolved to:
+Returns a Promise wich resolves to:
 
 ```json
 {
