@@ -15,7 +15,11 @@
     "credit-card",
     "encryption"
   ],
-  "author": "Udi Talias",
+  "author": {
+    "name": "Udi Talias",
+    "email": "udi.talias@gmail.com",
+    "url": "https://github.com/uditalias"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/uditalias/react-native-bluesnap-encrypter/issues"
