@@ -1,12 +1,10 @@
 # react-native-bluesnap-encrypter 🔐
-A Cross platform React Native module to encrypt BlueSnap sensitive form data
-
-As described in BlueSnap [API docs](https://developers.bluesnap.com/docs/client-side-encryption#section-implementing-client-side-encryption-in-your-web-form)
+A Cross platform React Native module to encrypt BlueSnap sensitive form data. As described in BlueSnap [API docs](https://developers.bluesnap.com/docs/client-side-encryption#section-implementing-client-side-encryption-in-your-web-form)
 
 
 ## Why
 
-BlueSnap SDKs provides soluion for Web, iOS and android plaforms. This module wraps BlueSnap's Web JavaScript SDK and allow form data encryption from your react native application.
+BlueSnap SDKs provides a soluion for Web, iOS and Android plaforms. This module wraps BlueSnap's Web JavaScript SDK and allow form data encryption from your react native application.
 
 ## Features
 
