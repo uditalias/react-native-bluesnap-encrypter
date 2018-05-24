@@ -4,7 +4,7 @@ A Cross platform React Native module to encrypt BlueSnap sensitive form data. As
 
 ## Why
 
-BlueSnap SDKs provides a soluion for Web, iOS and Android plaforms. This module wraps BlueSnap's Web JavaScript SDK and allow form data encryption from your react native application.
+BlueSnap SDKs provides a soluion for Web, iOS and Android plaforms. This module wraps BlueSnap's Web JavaScript SDK so you can perform data encryption from your react native application.
 
 ## Features
 
