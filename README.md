@@ -17,7 +17,7 @@ BlueSnap SDKs provides a soluion for Web, iOS and Android plaforms. This module 
 npm i --save react-native-bluesnap-encrypter
 ```
 
-### Quick Start
+## Quick Start
 
 ```jsx
 import React, { Component } from "react";
