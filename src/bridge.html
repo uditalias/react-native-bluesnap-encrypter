@@ -1,0 +1,112 @@
+<html>
+
+<head></head>
+
+<body>
+    <script>
+        window.initialize = (function () {
+            var queue = [];
+            var loaded = false;
+            var bluesnap = null;
+            var formId = "bluesnap";
+            var BS_CREDIT_CARD_KEY = "encryptedCreditCard";
+            var BS_CVV_KEY = "encryptedCvv";
+
+            function createHiddenInput(bluesnapName, value) {
+                var $input = document.createElement("input");
+                $input.setAttribute("type", "hidden");
+                $input.setAttribute("data-bluesnap", bluesnapName);
+                $input.value = value;
+
+                return $input;
+            }
+
+            function createForm(params) {
+                var $form = document.createElement("form");
+                var $creditCardNumber = createHiddenInput(BS_CREDIT_CARD_KEY, params.creditCardNumber);
+                var $cvvNumber = createHiddenInput(BS_CVV_KEY, params.cvvNumber);
+
+                $form.id = formId;
+
+                $form.appendChild($creditCardNumber);
+                $form.appendChild($cvvNumber);
+
+                document.body.appendChild($form);
+            }
+
+            function encrypt(action) {
+                createForm(action.data);
+
+                bluesnap.encrypt(formId);
+
+                var ccLast4Digits = document.querySelector("input[name='ccLast4Digits']").value;
+                var encryptedCreditCard = document.querySelector("input[name='" + BS_CREDIT_CARD_KEY + "']").value;
+                var encryptedCvv = document.querySelector("input[name='" + BS_CVV_KEY + "']").value;
+
+                var $form = document.querySelector("#" + formId);
+                $form.parentNode.removeChild($form);
+
+                window.postMessage(JSON.stringify({
+                    _id: action._id,
+                    type: "encrypt",
+                    data: {
+                        ccLast4Digits: ccLast4Digits,
+                        encryptedCreditCard: encryptedCreditCard,
+                        encryptedCvv: encryptedCvv
+                    }
+                }), "*");
+            }
+
+            function handleAction(action) {
+                switch (action.type) {
+                    case "encrypt":
+                        encrypt(action);
+                        break;
+                }
+            }
+
+            function onMessage(e) {
+                try {
+                    var action = JSON.parse(e.data);
+
+                    if (!action.type) {
+                        return;
+                    }
+
+                    if (!loaded) {
+                        queue.push(action);
+                        return;
+                    }
+
+                    handleAction(action);
+
+                } catch (e) {
+
+                }
+            }
+
+            document.addEventListener("message", onMessage, "*");
+            window.addEventListener("message", onMessage, "*");
+
+            return function (clientEncryptionKey, version) {
+                var script = document.createElement("script");
+                script.src = "https://gateway.bluesnap.com/js/cse/v" + version + "/bluesnap.js"
+                script.onload = function () {
+                    bluesnap = new BlueSnap(clientEncryptionKey);
+                    var queueLength = queue.length;
+                    if (queueLength > 0) {
+                        for (var i = 0; i < queueLength; i++) {
+                            handleAction(queue[i]);
+                        }
+
+                        queue.length = 0;
+                    }
+                    loaded = true;
+                };
+                document.head.appendChild(script);
+            }
+        })();
+    </script>
+</body>
+
+</html>
