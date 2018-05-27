@@ -75,7 +75,7 @@ class MyComponent extends Component {
 ## Methods
 ### encrypt
 
-Encrypts credit card data with you client encryption key.  
+Encrypts credit card data with your client encryption key.  
 
 ```js
 const encrypted = await this.encrypter.encrypt({
