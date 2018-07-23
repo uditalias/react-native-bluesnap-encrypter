@@ -59,6 +59,7 @@ class MyComponent extends Component {
                 <BlueSnapEncrypter
                     clientEncryptionKey="YOUR_CLIENT_ENCRYPTION_KEY"
                     bluesnapVersion="1.0.3"
+                    fraudSessionId="XXXX"
                     ref={(encrypter) => this.encrypter = encrypter}
                 />
             </View>
@@ -71,6 +72,7 @@ class MyComponent extends Component {
 | --- | --- | --- |
 |clientEncryptionKey | PropTypes.string.isRequired | Your BlueSnap client encription key (located at your API Settings)|
 |bluesnapVersion | PropTypes.string | Optional BlueSnap JavaScript SDK version, defaults to 1.0.3|
+|fraudSessionId | PropTypes.string | Unique ID of the shopper whose device fingerprint information was collected on the checkout page|
 
 ## Methods
 ### encrypt

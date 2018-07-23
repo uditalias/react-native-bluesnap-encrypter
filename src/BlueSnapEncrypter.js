@@ -42,9 +42,9 @@ export default class BlueSnapEncrypter extends PureComponent {
     }
 
     getInjectedJavaScript() {
-        const { bluesnapVersion, clientEncryptionKey } = this.props;
+        const { bluesnapVersion, clientEncryptionKey, fraudSessionId } = this.props;
 
-        return `window.initialize("${clientEncryptionKey}", "${bluesnapVersion}");`;
+        return `window.initialize("${clientEncryptionKey}", "${bluesnapVersion}", "${fraudSessionId}");`;
     }
 
     onEncrypt(action) {
@@ -102,5 +102,6 @@ BlueSnapEncrypter.propTypes = {
 }
 
 BlueSnapEncrypter.defaultProps = {
-    bluesnapVersion: "1.0.3"
+    bluesnapVersion: "1.0.3",
+    fraudSessionId: ""
 }

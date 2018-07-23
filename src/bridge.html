@@ -57,6 +57,14 @@
                 }), "*");
             }
 
+            function setFraudSession(fraudSessionId) {
+                var sessionUrl = "https://www.bluesnap.com/servlet/logo.htm?s=" + fraudSessionId;
+                var embed = document.createElement("div");
+
+                document.body.appendChild(embed);
+                embed.innerHTML = "<iframe width='1' height='1' frameborder='0' scrolling='no' src='" + sessionUrl + "'><img width='1' height='1' src='" + sessionUrl + "'></iframe>";
+            }
+
             function handleAction(action) {
                 switch (action.type) {
                     case "encrypt":
@@ -88,7 +96,7 @@
             document.addEventListener("message", onMessage, "*");
             window.addEventListener("message", onMessage, "*");
 
-            return function (clientEncryptionKey, version) {
+            return function (clientEncryptionKey, version, fraudSessionId) {
                 var script = document.createElement("script");
                 script.src = "https://gateway.bluesnap.com/js/cse/v" + version + "/bluesnap.js"
                 script.onload = function () {
@@ -102,6 +110,10 @@
                         queue.length = 0;
                     }
                     loaded = true;
+
+                    if (fraudSessionId) {
+                        setFraudSession(fraudSessionId);
+                    }
                 };
                 document.head.appendChild(script);
             }
