@@ -1,6 +1,6 @@
 {
   "name": "react-native-bluesnap-encrypter",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A Cross platform React Native module to encrypt BlueSnap sensitive form data",
   "main": "src/index.js",
   "scripts": {

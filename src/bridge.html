@@ -62,14 +62,11 @@
             }
 
             function setFraudSession(fraudSessionId) {
-                var frame = document.createElement("iframe");
+                var img = document.createElement("img");
 
-                frame.onload = function () {
-                    frame.onload = null;
-                    frame.contentWindow.document.body.innerHTML = "<iframe width='1' height='1' frameborder='0' scrolling='no' src='" + createEmbedFraudSessionUrl(fraudSessionId, "htm") + "'><img width='1' height='1' src='" + createEmbedFraudSessionUrl(fraudSessionId, "gif") + "'></iframe>";
-                }
+                img.src = createEmbedFraudSessionUrl(fraudSessionId, "gif");
 
-                document.body.appendChild(frame);
+                document.body.appendChild(img);
             }
 
             function handleAction(action) {
