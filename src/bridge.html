@@ -57,12 +57,15 @@
                 }), "*");
             }
 
+            function createEmbedFraudSessionUrl(fraudSessionId, type /* htm || gif */) {
+                return "https://www.bluesnap.com/servlet/logo." + type + "?s=" + fraudSessionId;
+            }
+
             function setFraudSession(fraudSessionId) {
-                var sessionUrl = "https://www.bluesnap.com/servlet/logo.htm?s=" + fraudSessionId;
                 var embed = document.createElement("div");
 
                 document.body.appendChild(embed);
-                embed.innerHTML = "<iframe width='1' height='1' frameborder='0' scrolling='no' src='" + sessionUrl + "'><img width='1' height='1' src='" + sessionUrl + "'></iframe>";
+                embed.innerHTML = "<iframe width='1' height='1' frameborder='0' scrolling='no' src='" + createEmbedFraudSessionUrl(fraudSessionId, "htm") + "'><img width='1' height='1' src='" + createEmbedFraudSessionUrl(fraudSessionId, "gif") + "'></iframe>";
             }
 
             function handleAction(action) {
