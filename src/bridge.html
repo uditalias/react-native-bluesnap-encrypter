@@ -62,10 +62,14 @@
             }
 
             function setFraudSession(fraudSessionId) {
-                var embed = document.createElement("div");
+                var frame = document.createElement("iframe");
 
-                document.body.appendChild(embed);
-                embed.innerHTML = "<iframe width='1' height='1' frameborder='0' scrolling='no' src='" + createEmbedFraudSessionUrl(fraudSessionId, "htm") + "'><img width='1' height='1' src='" + createEmbedFraudSessionUrl(fraudSessionId, "gif") + "'></iframe>";
+                frame.onload = function () {
+                    frame.onload = null;
+                    frame.contentWindow.document.body.innerHTML = "<iframe width='1' height='1' frameborder='0' scrolling='no' src='" + createEmbedFraudSessionUrl(fraudSessionId, "htm") + "'><img width='1' height='1' src='" + createEmbedFraudSessionUrl(fraudSessionId, "gif") + "'></iframe>";
+                }
+
+                document.body.appendChild(frame);
             }
 
             function handleAction(action) {
