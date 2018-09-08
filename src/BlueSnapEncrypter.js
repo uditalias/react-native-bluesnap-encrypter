@@ -90,6 +90,7 @@ export default class BlueSnapEncrypter extends PureComponent {
                     onMessage={this.onMessage}
                     injectedJavaScript={this.getInjectedJavaScript()}
                     source={BRIDGE}
+                    originWhitelist={["file://"]}
                 />
             </View>
         );
